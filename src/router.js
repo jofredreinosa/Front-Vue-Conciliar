@@ -74,6 +74,11 @@ export default new Router({
           path: '/admin/transactionTypes/list',
           component: () => import('@/views/admin/transactionTypes/transactionTypes-list'),
         },
+        {
+          name: 'Tipo de Transacción',
+          path: '/admin/transactionTypes/createoredit',
+          component: () => import('@/views/admin/transactionTypes/transactionTypes-createOrEdit'),
+        },
       ],
     },
   ],
