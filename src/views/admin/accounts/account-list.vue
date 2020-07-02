@@ -8,6 +8,27 @@
         icon=""
         title="Cuentas Bancarias"
       >
+        <v-tooltip left>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              class="mx-2"
+              fab
+              dark
+              color="primary"
+              absolute
+              right
+              v-bind="attrs"
+              v-on="on"
+              @click="createItem()"
+            >
+              <v-icon dark>
+                mdi-plus
+              </v-icon>
+            </v-btn>
+          </template>
+          <span>Nueva Cuenta</span>
+        </v-tooltip>
+
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -15,22 +36,43 @@
           hide-details
           style="width:30%;"
         />
+
         <v-data-table
           dense
           :headers="headers"
           :items="bankAccounts"
           :search="search"
+          :loading="loading"
           height="220px"
           class="mt-5"
         />
       </base-material-card>
     </v-container>
+
+    <accountscreateoredit
+      ref="accountscreateoredit"
+      @loadInitialData="loadInitialData"
+    />
+
+    <confirm
+      ref="confirm"
+    />
   </div>
 </template>
 
 <script>
+  // import config from '../../../config.json'
+  // import axios from 'axios'
+  import confirm from '../../shared/ConfirmDialog'
+  import accountscreateoredit from './accounts-createOrEdit'
   export default {
     name: 'AccountList',
+
+    components: {
+      accountscreateoredit,
+      confirm,
+    },
+
     data: () => ({
       breadcrumbsItems: [
         {
@@ -63,6 +105,19 @@
         },
       ],
       bankAccounts: [],
+      loading: false,
     }),
+
+    methods: {
+
+      loadInitialData () {
+        console.log('loadinitdata')
+      },
+
+      createItem () {
+        this.$refs.accountscreateoredit.show()
+      },
+    },
+
   }
 </script>

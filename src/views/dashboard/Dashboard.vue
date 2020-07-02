@@ -8,89 +8,56 @@
       dense
     >
       <v-col
-        cols="4"
-      >
-        <v-card
-          color="#385F73"
-          dark
-        >
-          <v-card-title
-            class="headline"
-          >
-            Cuentas Bancarias
-          </v-card-title>
-
-          <v-card-subtitle
-            class="mt-2"
-          >
-            Consulte el listado de sus cuentas bancarias.
-          </v-card-subtitle>
-
-          <v-card-actions>
-            <v-btn
-              text
-            >
-              Ir
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-
-      <v-col
-        cols="4"
+        cols="6"
       >
         <v-card
           color="#952175"
           dark
+          class="py-5"
         >
           <v-card-title
             class="headline"
           >
-            Saldos
+            <span>
+              <v-icon>
+                mdi-currency-usd
+              </v-icon>
+              Saldos
+            </span>
           </v-card-title>
 
           <v-card-subtitle
             class="mt-2"
           >
-            Consulte el listado de saldos de sus cuentas bancarias.
+            Consulte el listado de los saldos de sus diferentes cuentas bancarias.
           </v-card-subtitle>
-
-          <v-card-actions>
-            <v-btn
-              text
-            >
-              Ir
-            </v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
 
       <v-col
-        cols="4"
+        cols="6"
       >
         <v-card
           color="#1F7087"
           dark
+          class="py-5"
         >
           <v-card-title
             class="headline"
           >
-            Transacciones
+            <span>
+              <v-icon>
+                mdi-cash-register
+              </v-icon>
+              Transacciones
+            </span>
           </v-card-title>
 
           <v-card-subtitle
             class="mt-2"
           >
-            Registrar transacciones de sus diferentes cuentas bancarias.
+            Registrar transacciones en el libro de bancos.
           </v-card-subtitle>
-
-          <v-card-actions>
-            <v-btn
-              text
-            >
-              Ir
-            </v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>

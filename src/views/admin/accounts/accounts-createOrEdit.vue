@@ -5,7 +5,9 @@
       max-width="70%"
       persistent
     >
-      <v-card>
+      <v-card
+        v-if="itemToHandleView"
+      >
         <v-toolbar
           dark
           color="primary"
@@ -22,56 +24,79 @@
         <v-card-text>
           <v-container>
             <v-form
-              id="form"
               ref="form"
               v-model="valid"
               autocomplete="off"
             >
-              <v-row v-if="itemToHandleView">
+              <v-row>
                 <v-col
                   cols="12"
-                  sm="6"
-                  md="3"
+                  sm="12"
                 >
                   <v-text-field
-                    v-model="itemToHandleView.code"
+                    v-model="itemToHandleView.name"
                     dense
-                    :rules="codeRules"
-                    label="Código"
+                    :rules="nameRules"
+                    label="Nombre"
+                    placeholder="Nombre de la cuenta"
                     outlined
-                    class="text-uppercase"
                     autofocus
                   />
                 </v-col>
+              </v-row>
+
+              <v-row>
                 <v-col
                   cols="12"
-                  sm="6"
-                  md="6"
+                  sm="12"
+                  md="4"
                 >
                   <v-text-field
-                    v-model="itemToHandleView.description"
+                    v-model="itemToHandleView.number"
                     dense
-                    :rules="descriptionRules"
-                    label="Descripción"
+                    :rules="numberRules"
+                    label="Nro. Cuenta"
+                    maxlength="20"
+                    placeholder="12345678901234567890"
                     outlined
-                    class="text-uppercase"
                   />
                 </v-col>
                 <v-col
                   cols="12"
-                  sm="6"
-                  md="3"
+                  sm="12"
+                  md="4"
                 >
                   <v-select
-                    v-model="itemToHandleView.type"
+                    v-model="itemToHandleView.accountType"
                     dense
-                    :items="typeItems"
-                    :rules="typeRules"
+                    :items="accountTypeItems"
+                    :rules="accountTypeRules"
                     item-text="text"
                     item-value="value"
-                    label="Tipo"
+                    label="Tipo de Cuenta"
                     outlined
                   />
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="12"
+                  md="4"
+                >
+                  <v-radio-group
+                    v-model="itemToHandleView.bankType"
+                    row
+                    class="mt-n1"
+                    :rules="bankTypeRules"
+                  >
+                    <v-radio
+                      label="Público"
+                      value="PÚBLICO"
+                    />
+                    <v-radio
+                      label="Privado"
+                      value="PRIVADO"
+                    />
+                  </v-radio-group>
                 </v-col>
               </v-row>
             </v-form>
@@ -148,28 +173,34 @@
       saving: false,
       valid: false,
       dialog: false,
+      loading: false,
       title: '',
       snackShow: false,
       snackText: '',
       snackColor: '',
       snackTimeOut: 2500,
       itemToHandleView: null,
-      typeItems: [
-        { value: -1, text: 'Seleccione...' },
-        { value: 0, text: 'DÉBITO' },
-        { value: 1, text: 'CRÉDITO' },
+      accountTypeItems: [
+        { value: '', text: 'Seleccione...' },
+        { value: 'CORRIENTE', text: 'CORRIENTE' },
+        { value: 'AHORRO', text: 'AHORRO' },
+        { value: 'VISTA', text: 'VISTA' },
+        { value: 'CUENTA RUT', text: 'CUENTA RUT' },
       ],
-      codeRules: [
-        v => !!v || 'Código es obligatorio',
-        v => (!!v && v.length == 3) || 'El código debe tener 3 caracteres',
+      nameRules: [
+        v => !!v || 'Nombre de la cuenta es obligatorio',
       ],
-      descriptionRules: [
-        v => !!v || 'La descripción es obligatoria',
+      numberRules: [
+        v => !!v || 'El número de cuenta es obligatorio',
+        v => (v.length <= 20) || 'El máximo es de 20 caracteres',
+        v => /^[0-9]+/.test(v) || 'Debe contener solo números'
       ],
-      typeRules: [
-        v => (v != -1) || 'El tipo es obligatorio',
+      accountTypeRules: [
+        v => !!v || 'El tipo de cuenta es obligatorio',
       ],
-
+      bankTypeRules: [
+        v => !!v || 'El tipo de banco es obligatorio',
+      ],
     }),
 
     methods: {
@@ -177,34 +208,37 @@
         this.dialog = true
         this.itemToHandleView = item
         if (this.itemToHandleView) {
-          this.title = 'Editar Tipo de Transacción'
+          
+          this.title = 'Editar Cuenta'
           this.edit = true
         } else {
           this.itemToHandleView = {
-            code: '',
-            description: '',
-            type: -1,
+            name: '',
+            number: '',
+            accountType: '',
+            bankType: 'PÚBLICO',
           }
-          this.title = 'Crear Tipo de Transacción'
+          this.title = 'Crear Cuenta'
           this.edit = false
           setTimeout(()=> {
             this.$refs.form.reset();
           })
+          
         }
       },
 
       close () {
-        this.$refs.form.reset()
+        //this.$refs.form.reset()
         this.$emit('loadInitialData')
         this.dialog = false
       },
 
       save () {
         if ( this.$refs.form.validate() ) {
-          this.saving = true;
+          //this.saving = true;
           let url = ''
           if ( ! this.edit ) { // Creando 
-            url = config.API_ENDPOINT + 'transactiontypes'
+            /* url = config.API_ENDPOINT + 'transactiontypes'
             axios.post(url, this.itemToHandleView).then((result) => {
               if (result.data.success) {
                 this.saving = false
@@ -221,7 +255,7 @@
               this.snackText = error
               this.snackColor = 'error'
               this.snackShow = true
-            })
+            }) */
           }
           else { // editando
             url = config.API_ENDPOINT + 'transactiontypes/' + this.itemToHandleView._id

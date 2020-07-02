@@ -11,7 +11,7 @@
         <v-card
           color="#385F73"
           dark
-          class="clickable"
+          class="clickable py-3"
           :to="'/admin/accounts/list'"
         >
           <v-card-title
@@ -40,7 +40,7 @@
         <v-card
           color="#952175"
           dark
-          class="clickable"
+          class="clickable py-3"
           :to="'/admin/transactionTypes/list'"
         >
           <v-card-title
@@ -70,6 +70,7 @@
         <v-card
           color="#1F7087"
           dark
+          class="clickable py-3"
         >
           <v-card-title
             class="headline"
@@ -85,7 +86,7 @@
           <v-card-subtitle
             class="mt-2"
           >
-            Ajustes de las distintas variables ambiente
+            Ajustes de las variables de ambiente de la aplicación
           </v-card-subtitle>
 
           <v-card-actions />

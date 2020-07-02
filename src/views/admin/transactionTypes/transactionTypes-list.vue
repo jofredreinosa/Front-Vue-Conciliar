@@ -8,7 +8,7 @@
         icon=""
         title="Tipos de Transacción"
       >
-        <v-tooltip top>
+        <v-tooltip left>
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               class="mx-2"
@@ -28,6 +28,7 @@
           </template>
           <span>Nuevo Tipo de Transacción</span>
         </v-tooltip>
+
         <v-text-field
           v-model="search"
           append-icon="mdi-magnify"
@@ -49,13 +50,13 @@
               v-show="item.type == 1"
               class="text-blue"
             >
-              CRÉDITO
+              CRÉDITO (+)
             </span>
             <span
               v-show="item.type == 0"
               class="text-red"
             >
-              DÉBITO
+              DÉBITO (-)
             </span>
           </template>
 
@@ -122,7 +123,7 @@
   import transactiontypecreateoredit from './transactionTypes-createOrEdit'
 
   export default {
-    name: 'AccountList',
+    name: 'TransactionTypesList',
 
     components: {
       transactiontypecreateoredit,
@@ -188,7 +189,6 @@
 
       createItem () {
         this.$refs.transactiontypecreateoredit.show()
-        this.$refs.transactiontypecreateoredit.$refs.form.reset()
       },
 
       editItem (rowData) {
