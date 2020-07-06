@@ -34,7 +34,7 @@
                   sm="12"
                 >
                   <v-text-field
-                    v-model="itemToHandleView.name"
+                    v-model="itemToHandleView.accountName"
                     dense
                     :rules="nameRules"
                     label="Nombre"
@@ -52,7 +52,7 @@
                   md="4"
                 >
                   <v-text-field
-                    v-model="itemToHandleView.number"
+                    v-model="itemToHandleView.accountNumber"
                     dense
                     :rules="numberRules"
                     label="Nro. Cuenta"
@@ -83,7 +83,7 @@
                   md="4"
                 >
                   <v-radio-group
-                    v-model="itemToHandleView.bankType"
+                    v-model="itemToHandleView.accountBankType"
                     row
                     class="mt-n1"
                     :rules="bankTypeRules"
@@ -148,12 +148,12 @@
         v-slot:action="{ attrs }"
       >
         <v-btn
-          color="blue"
+          color="accent"
           text
           v-bind="attrs"
           @click="snackShow = false"
         >
-          Close
+          Cerrar
         </v-btn>
       </template>
     </v-snackbar>
@@ -178,7 +178,7 @@
       snackShow: false,
       snackText: '',
       snackColor: '',
-      snackTimeOut: 2500,
+      snackTimeOut: 3500,
       itemToHandleView: null,
       accountTypeItems: [
         { value: '', text: 'Seleccione...' },
@@ -192,7 +192,7 @@
       ],
       numberRules: [
         v => !!v || 'El número de cuenta es obligatorio',
-        v => (v.length <= 20) || 'El máximo es de 20 caracteres',
+        v => (!!v && v.length <= 20) || 'El máximo es de 20 caracteres',
         v => /^[0-9]+/.test(v) || 'Debe contener solo números'
       ],
       accountTypeRules: [
@@ -213,10 +213,10 @@
           this.edit = true
         } else {
           this.itemToHandleView = {
-            name: '',
-            number: '',
-            accountType: '',
-            bankType: 'PÚBLICO',
+            nameAccount: '',
+            numberAccount: '',
+            typeAccount: '',
+            bankTypeAccount: 'PÚBLICO',
           }
           this.title = 'Crear Cuenta'
           this.edit = false
@@ -228,17 +228,16 @@
       },
 
       close () {
-        //this.$refs.form.reset()
         this.$emit('loadInitialData')
         this.dialog = false
       },
 
       save () {
         if ( this.$refs.form.validate() ) {
-          //this.saving = true;
+          this.saving = true;
           let url = ''
           if ( ! this.edit ) { // Creando 
-            /* url = config.API_ENDPOINT + 'transactiontypes'
+            url = config.API_ENDPOINT + 'accounts'
             axios.post(url, this.itemToHandleView).then((result) => {
               if (result.data.success) {
                 this.saving = false
@@ -255,10 +254,10 @@
               this.snackText = error
               this.snackColor = 'error'
               this.snackShow = true
-            }) */
+            })
           }
           else { // editando
-            url = config.API_ENDPOINT + 'transactiontypes/' + this.itemToHandleView._id
+            url = config.API_ENDPOINT + 'accounts/' + this.itemToHandleView._id
             axios.put(url, this.itemToHandleView).then((result) => {
               if (result.data.success) {
                 this.saving = false
