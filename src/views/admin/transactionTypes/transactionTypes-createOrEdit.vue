@@ -123,12 +123,12 @@
         v-slot:action="{ attrs }"
       >
         <v-btn
-          color="blue"
+          color="accent"
           text
           v-bind="attrs"
           @click="snackShow = false"
         >
-          Close
+          Cerrar
         </v-btn>
       </template>
     </v-snackbar>
@@ -152,7 +152,7 @@
       snackShow: false,
       snackText: '',
       snackColor: '',
-      snackTimeOut: 2500,
+      snackTimeOut: 3500,
       itemToHandleView: null,
       typeItems: [
         { value: -1, text: 'Seleccione...' },

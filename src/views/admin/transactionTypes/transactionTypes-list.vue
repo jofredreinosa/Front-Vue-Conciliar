@@ -203,16 +203,19 @@
           this.loading = true
           axios.delete(url).then((result) => {
             if (result.data.success) {
+              this.loading = false
               this.snackText = result.data.message
               this.snackColor = 'success'
               this.snackShow = true
               this.loadInitialData()
             } else {
+              this.loading = false
               this.snackText = result.data.message
               this.snackColor = 'error'
               this.snackShow = true
             }
           }).catch((error) => {
+            this.loading = false
             this.snackText = error
             this.snackColor = 'error'
             this.snackShow = true
