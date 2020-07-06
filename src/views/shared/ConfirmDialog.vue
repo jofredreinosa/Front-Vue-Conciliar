@@ -23,7 +23,12 @@
         v-show="!!message"
         class="pa-4"
       >
-        {{ message }}
+        <p class="text-center">
+          <span class="message-title"> {{ message.title }} </span>
+        </p>
+        <p>
+          {{ message.subtitle }}
+        </p>
       </v-card-text>
       <v-card-actions
         class="pt-0"
@@ -56,11 +61,11 @@
       dialog: false,
       resolve: null,
       reject: null,
-      message: null,
+      message: { title: '', subtitle: '' },
       title: null,
       options: {
         color: 'primary',
-        width: 290,
+        width: 380,
         zIndex: 200,
         confirmText: 'Aceptar',
         cancelText: 'Cancelar',
@@ -92,3 +97,10 @@
     },
   }
 </script>
+
+<style scoped>
+.message-title {
+  font-size: 20px;
+}
+
+</style>
