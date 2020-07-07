@@ -179,10 +179,10 @@
           if (result.data.success) {
             this.loading = false
             this.transactionTypes = result.data.data
-          } else {
-            console.info(result.data)
           }
         }).catch((error) => {
+          this.loading = false
+          // eslint-disable-next-line no-console
           console.log(error)
         })
       },
@@ -197,7 +197,10 @@
       },
 
       async deleteItem (rowData) {
-        const message = '¿Seguro de Eliminar el tipo de transacción ' + rowData.code + ' ' + rowData.description + '?'
+        const message = {
+          title: '¿Seguro de Eliminar el tipo de transacción?',
+          subtitle: rowData.code + ' - ' + rowData.description,
+        }
         if (await this.$refs.confirm.open('Eliminar', message, { color: 'error', confirmText: 'Si, eliminar', cancelText: 'No, cerrar' })) {
           const url = config.API_ENDPOINT + 'transactiontypes/' + rowData._id
           this.loading = true

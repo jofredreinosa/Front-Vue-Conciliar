@@ -65,7 +65,7 @@
       title: null,
       options: {
         color: 'primary',
-        width: 380,
+        width: 450,
         zIndex: 200,
         confirmText: 'Aceptar',
         cancelText: 'Cancelar',

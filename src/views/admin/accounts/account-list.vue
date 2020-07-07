@@ -147,10 +147,10 @@
             this.bankAccounts = result.data.data
           } else {
             this.loading = false
-            console.info(result.data)
           }
         }).catch((error) => {
           this.loading = false
+          // eslint-disable-next-line no-console
           console.log(error)
         })
       },
