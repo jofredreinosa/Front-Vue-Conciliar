@@ -8,7 +8,14 @@
       dense
     >
       <v-col
-        cols="6"
+        cols="12"
+      >
+        <underconstruction />
+      </v-col>
+
+      <v-col
+        cols="12"
+        md="6"
       >
         <v-card
           color="#952175"
@@ -35,7 +42,8 @@
       </v-col>
 
       <v-col
-        cols="6"
+        cols="12"
+        md="6"
       >
         <v-card
           color="#1F7087"
@@ -65,8 +73,13 @@
 </template>
 
 <script>
+  import underconstruction from '../shared/UnderConstruction'
   export default {
     name: 'DashboardDashboard',
+
+    components: {
+      underconstruction,
+    },
 
     data () {
       return {

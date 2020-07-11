@@ -46,6 +46,16 @@ export default new Router({
           path: '/admin/transactionTypes/createoredit',
           component: () => import('@/views/admin/transactionTypes/transactionTypes-createOrEdit'),
         },
+        {
+          name: 'Procesos',
+          path: '/process/processmenu',
+          component: () => import('@/views/process/ProcessMenu'),
+        },
+        {
+          name: 'Reportes',
+          path: '/reports/reportsmenu',
+          component: () => import('@/views/reports/ReportsMenu'),
+        },
       ],
     },
   ],

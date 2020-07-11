@@ -118,12 +118,12 @@
         {
           title: 'Procesos',
           icon: 'mdi-database-edit',
-          to: '',
+          to: '/process/processmenu',
         },
         {
           title: 'Reportes',
           icon: 'mdi-clipboard-text',
-          to: '',
+          to: '/reports/reportsmenu',
         },
       ],
     }),
