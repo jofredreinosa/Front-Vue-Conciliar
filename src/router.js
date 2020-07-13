@@ -62,6 +62,16 @@ export default new Router({
           path: '/reports/reportsmenu',
           component: () => import('@/views/reports/ReportsMenu'),
         },
+        {
+          name: 'Utilidades',
+          path: '/utilities/utilitiesmenu',
+          component: () => import('@/views/utilities/UtilitiesMenu'),
+        },
+        {
+          name: 'Seleccionar Cuenta',
+          path: '/utilities/selectaccount',
+          component: () => import('@/views/utilities/select-account'),
+        },
       ],
     },
   ],

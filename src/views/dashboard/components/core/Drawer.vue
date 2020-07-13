@@ -111,7 +111,7 @@
           to: '/',
         },
         {
-          icon: 'mdi-hammer-wrench',
+          icon: 'mdi-cog',
           title: 'Mantenimiento',
           to: '/admin/maintenance',
         },
@@ -124,6 +124,11 @@
           title: 'Reportes',
           icon: 'mdi-clipboard-text',
           to: '/reports/reportsmenu',
+        },
+        {
+          title: 'Utilidades',
+          icon: 'mdi-hammer-wrench',
+          to: '/utilities/utilitiesmenu',
         },
       ],
     }),

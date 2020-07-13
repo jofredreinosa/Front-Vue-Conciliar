@@ -26,7 +26,7 @@
         <p class="text-center">
           <span class="message-title"> {{ message.title }} </span>
         </p>
-        <p>
+        <p class="text-center">
           {{ message.subtitle }}
         </p>
       </v-card-text>
