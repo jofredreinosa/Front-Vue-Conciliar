@@ -17,7 +17,13 @@ export default new Router({
           path: '',
           component: () => import('@/views/dashboard/Dashboard'),
         },
-        // Pages
+        // Saldo de cuentas
+        {
+          name: 'Consulta de saldos',
+          path: 'admin/accounts/balance',
+          component: () => import('@/views/admin/accounts/account-balance'),
+        },
+        // Perfil de Usuario
         {
           name: 'Perfil de Usuario',
           path: 'pages/user',

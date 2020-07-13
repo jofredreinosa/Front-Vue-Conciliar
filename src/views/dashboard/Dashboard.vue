@@ -20,7 +20,8 @@
         <v-card
           color="#952175"
           dark
-          class="py-5"
+          class="clickable py-3"
+          :to="'/admin/accounts/balance'"
         >
           <v-card-title
             class="headline"
@@ -48,7 +49,7 @@
         <v-card
           color="#1F7087"
           dark
-          class="py-5"
+          class="py-3"
         >
           <v-card-title
             class="headline"
@@ -90,3 +91,8 @@
     },
   }
 </script>
+<style scoped>
+  .clickable {
+    cursor: pointer;
+  }
+</style>
