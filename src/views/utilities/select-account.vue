@@ -4,9 +4,38 @@
     <v-container
       fluid
     >
+      <v-row dense>
+        <v-col
+          cols="12"
+          class="mt-n3"
+        >
+          <p>
+            <span
+              class="headline ml-2"
+            >
+              Cuenta Seleccionada:
+            </span>
+            <span
+              v-if="getActualSelectedAccount.accountName"
+              class="ml-2"
+            >
+              {{ getActualSelectedAccount.accountName }} -
+              {{ getActualSelectedAccount.accountNumber }}
+            </span>
+            <span
+              v-if="!getActualSelectedAccount.accountName"
+              class="ml-2"
+            >
+              No hay ninguna cuenta seleccionada
+            </span>
+          </p>
+        </v-col>
+      </v-row>
+
       <base-material-card
         icon=""
         title="Cuentas Bancarias"
+        class="mt-1"
       >
         <v-text-field
           v-model="search"
@@ -15,7 +44,6 @@
           hide-details
           style="width:30%;"
         />
-
         <v-data-table
           :headers="headers"
           :items="bankAccounts"
@@ -72,6 +100,7 @@
   import confirm from '../shared/ConfirmDialog'
   import config from '../../config.json'
   import axios from 'axios'
+  import { mapGetters, mapMutations } from 'vuex'
 
   export default {
     name: 'AccountList',
@@ -119,11 +148,17 @@
       snackTimeOut: 3500,
     }),
 
+    computed: mapGetters(['getActualSelectedAccount']),
+
     mounted () {
       this.loadInitialData()
     },
 
     methods: {
+
+      ...mapMutations({
+        setActualAccount: 'SET_ACTUAL_ACCOUNT',
+      }),
 
       loadInitialData () {
         const url = config.API_ENDPOINT + 'accounts'
@@ -154,6 +189,7 @@
           width: 550,
         }
         if (await this.$refs.confirm.open('Seleccionar Cuenta', message, options)) {
+          this.setActualAccount(rowData)
           this.snackText = 'Cuenta seleccionada con éxito'
           this.snackColor = 'success'
           this.snackShow = true
