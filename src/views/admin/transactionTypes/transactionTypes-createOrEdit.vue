@@ -188,7 +188,7 @@
           this.title = 'Crear Tipo de Transacción'
           this.edit = false
           setTimeout(()=> {
-            this.$refs.form.reset();
+            this.$refs.form.reset()
           })
         }
       },
@@ -201,7 +201,7 @@
 
       save () {
         if ( this.$refs.form.validate() ) {
-          this.saving = true;
+          this.saving = true
           let url = ''
           if ( ! this.edit ) { // Creando 
             url = config.API_ENDPOINT + 'transactiontypes'
@@ -215,7 +215,7 @@
               } else {
                 this.snackText = result.data.message
                 this.snackColor = 'error'
-                this.snackShow = true;
+                this.snackShow = true
               }
             }).catch((error) => {
               this.snackText = error
@@ -230,17 +230,17 @@
                 this.saving = false
                 this.snackText = result.data.message
                 this.snackColor = 'success'
-                this.snackShow = true;
+                this.snackShow = true
                 this.close()
               } else {
                 this.snackText = result.data.message
                 this.snackColor = 'error'
-                this.snackShow = true;
+                this.snackShow = true
               }
             }).catch((error) => {
               this.snackText = error
               this.snackColor = 'error'
-              this.snackShow = true;
+              this.snackShow = true
             })
           }
         }

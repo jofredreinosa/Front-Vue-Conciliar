@@ -20,6 +20,7 @@
           color="#385F73"
           dark
           class="clickable py-3"
+          :to="'/process/transactionsbooks'"
         >
           <v-card-title
             class="headline"

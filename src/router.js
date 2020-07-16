@@ -72,6 +72,11 @@ export default new Router({
           path: '/utilities/selectaccount',
           component: () => import('@/views/utilities/select-account'),
         },
+        {
+          name: 'Transacciones en Libros',
+          path: '/process/transactionsbooks',
+          component: () => import('@/views/process/transactions/Transactions'),
+        },
       ],
     },
   ],

@@ -23,7 +23,7 @@
               {{ getActualSelectedAccount.accountNumber }}
             </span>
             <span
-              v-if="!getActualSelectedAccount.accountName"
+              v-else
               class="ml-2"
             >
               No hay ninguna cuenta seleccionada

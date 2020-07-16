@@ -9,12 +9,6 @@
     >
       <v-col
         cols="12"
-      >
-        <underconstruction />
-      </v-col>
-
-      <v-col
-        cols="12"
         md="6"
       >
         <v-card
@@ -50,6 +44,7 @@
           color="#1F7087"
           dark
           class="py-3"
+          :to="'/process/transactionsbooks'"
         >
           <v-card-title
             class="headline"
@@ -74,13 +69,8 @@
 </template>
 
 <script>
-  import underconstruction from '../shared/UnderConstruction'
   export default {
     name: 'DashboardDashboard',
-
-    components: {
-      underconstruction,
-    },
 
     data () {
       return {
